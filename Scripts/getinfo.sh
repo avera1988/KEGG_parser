@@ -1,15 +1,7 @@
 #!/usr/bin/bash
 
 #Script to obtain KEGG annotations and Pathways#
-
-print_usage(){
-	echo "Usage: $0 path_to_KEGG_parser_Scripts"
-}
-if [ $# -le 1 ]
-	then
-	print_usage()
-	exit 1
-fi
+#"Usage:bash getinfo.sh path_to_KEGG_parser_Scripts"
 
 scripts=$1
 cp $scripts/*.R .
