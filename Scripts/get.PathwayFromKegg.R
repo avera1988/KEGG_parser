@@ -3,8 +3,11 @@
 # This script return All metabolic pathway annotation associated to KO ids after
 # BlastKoala Annotation by KEGG
 # Author Arturo Vera
+# quark.vera@gmail.com
 # April 2020
 ###############################################
+#Install Dependencies
+
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
@@ -20,12 +23,13 @@ if (!require("tidyverse")){
 if(!require("openxlsx")){
 	install.packages("openxlsx")
 	library(openxlsx)
-}
-
+} 
+##Rading data
 args <- commandArgs(TRUE)
 input.user.KO <- args[1]
 input.Annot <- args[2]
 outputFile <- args[3]
+##Manin script
 
 #Reading Table from KEGG Koala
 rawTable <- read.delim(input.user.KO,header = F,sep="\t")
@@ -59,15 +63,16 @@ jTotal <- lapply(totalKO,function(x){
   cabeDF$KO <- cabeDF[1,]
   return(cabeDF)
 })
-
+#Reducing table into a Dataframe
 BindTotal <- reduce(jTotal,rbind) %>%
   mutate(ROWS=row.names(.)) %>%
   filter(!grepl("KO",ROWS)) %>%
   select(matches("KO|Path"))
-
+#Join Pathways and Annotaion values (i.e. DEFFINITION)
 TotalKegg <- right_join(BindTotal,rawTableAnnot,by="KO") %>%
   arrange(Pathway)
 
+#Saving objects into tab and excel files
 write.table(TotalKegg,paste0(outputFile,".tab"),sep="\t",row.names = F,quote=F)
 openxlsx::write.xlsx(TotalKegg,file=paste0(outputFile,".xlsx"))
 
