@@ -8,9 +8,10 @@
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
-BiocManager::install("KEGGREST")
-
-library(KEGGREST)
+if(!require("KEGGREST")){
+	BiocManager::install("KEGGREST")
+	library(KEGGREST)
+}
 
 if (!require("tidyverse")){
         install.packages("tidyverse")
