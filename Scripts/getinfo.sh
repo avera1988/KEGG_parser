@@ -13,15 +13,21 @@ then
 	exit 1
 fi
 
+
 scripts=$1
 cp $scripts/*.R .
-	
+
+#Obtain Tables with KO and Gene_ID remove all not KO annotations
+
 for i in *ko.txt;
 	do
 	cat $i|awk '{if($2 ~ /^K/) print $2}' > $i.to.keggrest;
 	cat $i|awk '{if($2 ~ /^K/) print }' > $i.mod;
 done
+
 #Apply getInfo.R script
+
+echo "Obtain KEGG annotations by KEGGREST"
 
 for i in *.keggrest;
 	do
@@ -29,6 +35,8 @@ for i in *.keggrest;
 done
 
 #Obtain Pathway
+
+echo "Obtain KEGG Pathways by KEGGREST"
 
 for i in *.mod
 	do
