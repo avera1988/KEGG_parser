@@ -3,6 +3,16 @@
 #Script to obtain KEGG annotations and Pathways#
 #"Usage:bash getinfo.sh path_to_KEGG_parser_Scripts"
 
+print_usage(){
+	echo "Usage: $0 path_to_KEGG_pasrser_scripts"
+}
+
+if [ $# -le 0 ]
+then
+	print_usage
+	exit 1
+fi
+
 scripts=$1
 cp $scripts/*.R .
 	
