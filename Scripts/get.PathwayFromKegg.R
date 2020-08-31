@@ -24,7 +24,7 @@ if(!require("openxlsx")){
 	install.packages("openxlsx")
 	library(openxlsx)
 } 
-##Rading data
+##Reading data
 args <- commandArgs(TRUE)
 input.user.KO <- args[1]
 input.Annot <- args[2]
