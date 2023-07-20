@@ -22,7 +22,7 @@ getInfoFromKegg<-function(fnInputFileName,fnOutputFileName)
    for(i in fnObjectstoFind)
    {
       print(i)
-      fnResTable<-(rbind(fnResTable,c(i,fnAnswer<-keggGet(i)[[1]]$DEFINITION)))
+      fnResTable<-(rbind(fnResTable,c(i,fnAnswer<-keggGet(i)[[1]]$NAME)))
           
    }
    fnResTable<-fnResTable[-1,]
