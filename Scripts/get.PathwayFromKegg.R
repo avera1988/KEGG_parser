@@ -9,7 +9,8 @@
 #Install Dependencies
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
+    install.packages("BiocManager",
+		     repos='http://cran.us.r-project.org')
 
 if(!require("KEGGREST")){
 	BiocManager::install("KEGGREST")
@@ -17,11 +18,13 @@ if(!require("KEGGREST")){
 }
 
 if (!require("tidyverse")){
-        install.packages("tidyverse")
+        install.packages("tidyverse",
+			repos='http://cran.us.r-project.org')
 	library(tidyverse)
 }
 if(!require("openxlsx")){
-	install.packages("openxlsx")
+	install.packages("openxlsx",
+			repos='http://cran.us.r-project.org')
 	library(openxlsx)
 } 
 ##Reading data
